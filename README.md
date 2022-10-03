@@ -1,3 +1,9 @@
+# Overview
+
+This project is a fork of [Yangziwen's diff-checkstyle](https://github.com/yangziwen/diff-checkstyle). The original project is not actively maintained anymore.
+
+The contents of the original README.md follow.
+
 # diff-checkstyle
 [![Build Status](https://www.travis-ci.org/yangziwen/diff-checkstyle.svg?branch=master)](https://www.travis-ci.org/yangziwen/diff-checkstyle)
 [![Coverage Status](https://coveralls.io/repos/github/yangziwen/diff-checkstyle/badge.svg?branch=master)](https://coveralls.io/github/yangziwen/diff-checkstyle?branch=master)
