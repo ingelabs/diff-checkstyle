@@ -50,6 +50,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.jgit.diff.HistogramDiff;
 import org.eclipse.jgit.util.StringUtils;
 
+import com.puppycrawl.tools.checkstyle.AbstractAutomaticBean;
 import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -79,10 +80,6 @@ import io.github.yangziwen.checkstyle.diff.DiffCalculator;
 import io.github.yangziwen.checkstyle.diff.DiffEntryWrapper;
 import io.github.yangziwen.checkstyle.filter.DiffLineFilter;
 
-/**
- * Wrapper command line program for the Checker.
- * @noinspection UseOfSystemOutOrSystemErr
- **/
 /**
  * Wrapper command line program for the Checker.
  * @noinspection UseOfSystemOutOrSystemErr
@@ -448,13 +445,12 @@ public final class Main {
         if (cmdLine.hasOption(cliParameterName)) {
             final String checkerThreadsNumberStr =
                 cmdLine.getOptionValue(cliParameterName);
-            if (CommonUtil.isInt(checkerThreadsNumberStr)) {
+            try {
                 final int checkerThreadsNumber = Integer.parseInt(checkerThreadsNumberStr);
                 if (checkerThreadsNumber < 1) {
                     result.add(mustBeGreaterThanZeroMessage);
                 }
-            }
-            else {
+            } catch (NumberFormatException ignored) {
                 result.add(invalidNumberMessage);
             }
         }
@@ -626,7 +622,7 @@ public final class Main {
                 }
 
                 listener = new XpathFileGeneratorAuditListener(System.out,
-                        AutomaticBean.OutputStreamOptions.NONE);
+                        AbstractAutomaticBean.OutputStreamOptions.NONE);
             }
             else {
                 listener = createListener(cliOptions.format,
